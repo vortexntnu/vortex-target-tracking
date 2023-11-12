@@ -7,11 +7,22 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(Eigen3 REQUIRED)
+find_package(vortex_filtering REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
 add_executable(pdaf src/pdaf.cpp)
+
+target_link_libraries(pdaf
+  Eigen3::Eigen
+)
+
+ament_target_dependencies(pdaf
+  vortex_filtering
+)
+
 target_include_directories(pdaf PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
