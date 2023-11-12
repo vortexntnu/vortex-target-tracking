@@ -79,38 +79,38 @@ public:
     }
 };
 
-int main(int argc, char ** argv) 
+int main(int argc, char** argv)
 {
 
-  // predefined configuration
-  // for more information lock at :
-  // https://github.com/vortexntnu/vortex-cv/blob/main/tracking/config/config_traking_sys.yaml
-  float time_step = 0.1f;
-  int validation_gate_scaling_param = 2;
-  float minimal_mahalanobis_distance = 0.001f;
-  float p_no_match = 0.5f;
-  Eigen::Vector4d state_post = Eigen::Vector4d::Zero();
-  Eigen::Matrix4d P_post = Eigen::Matrix4d::Zero();
-  Eigen::Matrix4d Q = Eigen::Matrix4d::Identity();
-  Eigen::Matrix2d R = Eigen::Matrix2d::Zero();
+    // predefined configuration
+    // for more information lock at :
+    // https://github.com/vortexntnu/vortex-cv/blob/main/tracking/config/config_traking_sys.yaml
+    float time_step = 0.1f;
+    int validation_gate_scaling_param = 2;
+    float minimal_mahalanobis_distance = 0.001f;
+    float p_no_match = 0.5f;
+    Eigen::Vector4d state_post = Eigen::Vector4d::Zero();
+    Eigen::Matrix4d P_post = Eigen::Matrix4d::Zero();
+    Eigen::Matrix4d Q = Eigen::Matrix4d::Identity();
+    Eigen::Matrix2d R = Eigen::Matrix2d::Zero();
 
+    PDAF pdaf_class(time_step, state_post, P_post, Q, R, validation_gate_scaling_param, minimal_mahalanobis_distance, p_no_match);
 
-  PDAF pdaf_class(time_step, state_post, P_post, Q, R, validation_gate_scaling_param, minimal_mahalanobis_distance, p_no_match);
+    std::cout << pdaf_class.apply_velocity << "\n"
+              << std::endl;
+    std::cout << pdaf_class.C << "\n"
+              << std::endl;
 
-  
-  std::cout << pdaf_class.apply_velocity << "\n" << std::endl;
-  std::cout << pdaf_class.C << "\n" << std::endl;
+    pdaf_class.update_model(5.0f);
 
-  pdaf_class.update_model(5.0f);
+    std::cout << pdaf_class.apply_velocity << "\n"
+              << pdaf_class.time_step << "\n"
+              << std::endl;
 
-  std::cout << pdaf_class.apply_velocity << "\n" << pdaf_class.time_step << "\n" << std::endl;
+    (void)argc;
+    (void)argv;
 
-  (void) argc;
-  (void) argv;
+    printf("hello world target-tracking-pkg package\n");
 
-  printf("hello world target-tracking-pkg package\n");
-
-
-
-  return 0;
+    return 0;
 }
