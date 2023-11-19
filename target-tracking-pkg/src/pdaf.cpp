@@ -42,14 +42,8 @@ public:
     }
 };
 
-int main(int argc, char ** argv) 
+int main(int argc, char** argv)
 {
     PDAF pdaf_class();
-
-    (void) argc;
-    (void) argv;
-
-    printf("hello world target-tracking-pkg package\n");
-
     return 0;
 }
