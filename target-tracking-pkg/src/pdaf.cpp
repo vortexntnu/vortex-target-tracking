@@ -1,7 +1,7 @@
 #include <Eigen/Dense>
 #include <iostream>
-#include <string>
 #include <memory>
+#include <string>
 #include <vector>
 #include <vortex_filtering/vortex_filtering.hpp>
 
@@ -35,7 +35,7 @@ public:
         std::pair<Gauss4d, Gauss2d> x_z_pred = ekf_.predict(x_est, timestep);
 
         // x_post -> vector
-        for (const auto &element : z_meas) {
+        for (const auto& element : z_meas) {
             // x_post append with:
             ekf_.update(std::get<0>(x_z_pred), std::get<1>(x_z_pred), element);
         }
