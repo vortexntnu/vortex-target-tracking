@@ -1,4 +1,10 @@
 cmake_minimum_required(VERSION 3.8)
+
+# === C++ standard ===
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 17)
+  endif()
+
 project(target-tracking-pkg)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
