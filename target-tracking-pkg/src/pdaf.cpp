@@ -46,7 +46,7 @@ public:
     void predict_next_state(Gauss4d x_est, Measurements2d z_meas, double timestep, DynModPtr dyn_model, SensModPtr sen_model)
     {
         EKF ekf;
-        //std::pair<Gauss4d, Gauss2d> x_z_pred = ekf.predict(dyn_model, sen_model, timestep, x_est);
+        // std::pair<Gauss4d, Gauss2d> x_z_pred = ekf.predict(dyn_model, sen_model, timestep, x_est);
         auto [x_pred, z_pred] = ekf.predict(dyn_model, sen_model, timestep, x_est);
         Measurements2d filtered = apply_gate(gate_threshold_, z_meas, z_pred);
 
